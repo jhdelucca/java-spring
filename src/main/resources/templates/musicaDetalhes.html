@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset='utf-8'>
+    <title>Musicas Detalhes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1" style="font-weight: bold;">
+                <a href="/musicas">Catalogo Musical</a>
+            </span>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" style=" padding-bottom: 30px;">
+            <section class="row">
+                <div class="col-md-6 col-sm-12">
+                    <article class="jumbotron mt-3">
+                        <h1 class="card-title" style="font-weight: bold; margin-bottom: 20px;"><span
+                                th:text="${musica.titulo}"></span></h1>
+
+                        <p class="card-subtitle mb-2 text-muted">
+                            <i class="material-icons">person_outline</i>
+                            <span th:text="${musica.autor}"></span>
+                            <br>
+                            <i class="material-icons">date_range</i>
+                            <span th:text="${musica.data}"></span>
+                        </p>
+                        <section>
+                            <p class="card-text" style="margin-top: 40px;"><span th:utext="${musica.letra}"></span></p>
+                        </section>
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <th:block th:include="mensagemErro"></th:block>
+
+                    <form method="post" style=" width: 80%; margin: 0 auto; padding: 30px 0px; ">
+                        <input type="hidden" name="_method" value="PUT">
+                        
+                        <h4>Editar Musica</h4>
+                        <div class="form-group mt-3">
+                            <input type="text" class="form-control" name="titulo" placeholder="Título *">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="autor" placeholder="Autor *" enabled="false">
+                        </div>
+
+                        <textarea id="summernote" type="text" class="form-control" name="letra"
+                            placeholder="Letra *"></textarea>
+
+                        <small class="form-text text-muted">(*) Campos obrigatórios</small>
+
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <button type="submit" class="btn btn-primary form-control"
+                                    style="margin-top: 10px;">Editar</button>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+                                <a href="/musicas" class="btn btn-light form-control" role="button"
+                                    style="margin-top: 10px;">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>
